@@ -35,12 +35,14 @@ X = [ones(m, 1) X];
 %       are dealing with large number of parameters.
 
 for c = 1:num_labels,
+theta_col = zeros(n + 1, 1);
 theta_col = all_theta(c, :)';
 
 % Set options for fminunc
 options = optimset('GradObj', 'on', 'MaxIter', 50);
-[theta, J, exit_flag] = ...
+[theta] = ...
 fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), theta_col, options);
+all_theta(c, :) = theta;
 end
 
 

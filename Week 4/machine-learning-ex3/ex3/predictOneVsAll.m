@@ -30,11 +30,14 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% h is a m*num_labels matrix with m (num_labels *1); each example has a logistic regression cost
+h = zeros(m, num_labels);
+h = sigmoid(X * all_theta');
+            
+max_y = zeros(size(X, 1), 1);
 
-
-
-
-
+% Goal is to find the index which maximize h(x)
+[max_y, p] = max(h, [], 2);
 
 % =========================================================================
 
